@@ -16,7 +16,24 @@ const app = express();
 // ---------------------------------------------------------------------------
 
 app.use(helmet());
-app.use(cors());
+
+// CORS – allow configured origins in production, open in development
+const allowedOrigins = process.env["CORS_ORIGINS"]
+  ?.split(",")
+  .map((o) => o.trim())
+  .filter(Boolean);
+
+app.use(
+  cors(
+    allowedOrigins && allowedOrigins.length > 0
+      ? {
+          origin: allowedOrigins,
+          credentials: true,
+        }
+      : undefined,
+  ),
+);
+
 app.use(compression());
 app.use(express.json({ limit: "2mb" }));
 app.use(express.urlencoded({ extended: true }));
