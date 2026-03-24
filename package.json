@@ -1,0 +1,25 @@
+{
+  "name": "trendmetrics",
+  "private": true,
+  "version": "0.1.0",
+  "description": "AI-Powered Market Intelligence Platform",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "cd packages/backend && npm run dev",
+    "dev:frontend": "cd packages/frontend && npm run dev",
+    "build": "npm run build:backend && npm run build:frontend",
+    "build:backend": "cd packages/backend && npm run build",
+    "build:frontend": "cd packages/frontend && npm run build",
+    "db:migrate": "cd packages/backend && npm run db:migrate",
+    "db:seed": "cd packages/backend && npm run db:seed",
+    "lint": "concurrently \"cd packages/backend && npm run lint\" \"cd packages/frontend && npm run lint\"",
+    "test": "cd packages/backend && npm run test",
+    "clean": "rm -rf packages/backend/dist packages/frontend/dist"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
